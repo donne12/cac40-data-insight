@@ -13,7 +13,7 @@ const App = () => {
   const fetchData = async () => {
     try {
       const res = await axios.get(
-        `https://query1.finance.yahoo.com/v8/finance/chart/${devise}?period1=1633381200&period2=${todayInTimestamp}&interval=${interval}&events=history&crumb=5YTX%2FgVGBmg&corsDomain=finance.yahoo.com&.tsrc=finance`,
+        `https://query1.finance.yahoo.com/v8/finance/chart/${devise}?period1=1633381200&period2=${todayInTimestamp}&interval=${interval}&events=history&crumb=5YTX%2FgVGBmg&corsDomain=query1.finance.yahoo.com&.tsrc=finance`,
         {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -41,7 +41,7 @@ const App = () => {
     setTodayInTimestamp(Math.floor(Date.now() / 1000));
     setDevise('^FCHI');
     setDeviseName('CAC 40');
-    //fetchData();
+    fetchData();
   }, [interval, todayInTimestamp]);
 
   const options = {
@@ -74,7 +74,7 @@ const App = () => {
         <button onClick={handleDeviseChange("CA.PA", "Carrefour")}>Carrefour</button>
         <button onClick={handleDeviseChange("AIR.PA", "Airbus")}>Airbus</button>
         <button onClick={handleDeviseChange("BN.PA", "Danone")}>Danone</button>
-        <button onClick={handleDeviseChange("BNP.PA", "BNP")}>BNP</button>
+        <button onClick={handleDeviseChange("BNP.PA", "BNP Paribas")}>BNP</button>
         <button onClick={handleDeviseChange("ACA.PA", "Crédit Agricole")}>Crédit Agricole</button>
         <button onClick={handleDeviseChange("ENGI.PA", "Engie")}>Engie</button>
         <button onClick={handleDeviseChange("KER.PA", "Kering")}>Kering</button>
