@@ -13,7 +13,7 @@ const App = () => {
   const fetchData = async () => {
     try {
       const res = await axios.get(
-        `/v8/finance/chart/${devise}?period1=1633381200&period2=${todayInTimestamp}&interval=${interval}&events=history&crumb=5YTX%2FgVGBmg&corsDomain=finance.yahoo.com&.tsrc=finance`,
+        `https://query1.finance.yahoo.com/v8/finance/chart/${devise}?period1=1633381200&period2=${todayInTimestamp}&interval=${interval}&events=history&crumb=5YTX%2FgVGBmg&corsDomain=finance.yahoo.com&.tsrc=finance`,
         {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
