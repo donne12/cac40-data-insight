@@ -13,7 +13,7 @@ const App = () => {
   const fetchData = async () => {
     try {
       const res = await axios.get(
-        `https://query1.finance.yahoo.com/v8/finance/chart/${devise}?period1=1633381200&period2=${todayInTimestamp}&interval=${interval}&events=history&crumb=5YTX%2FgVGBmg&corsDomain=main--euphonious-faloodeh-6c0d77.netlify.app&.tsrc=finance`,
+        `/v8/finance/chart/${devise}?period1=1633381200&period2=${todayInTimestamp}&interval=${interval}&events=history&crumb=5YTX%2FgVGBmg&corsDomain=finance.yahoo.com&.tsrc=finance`,
         {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -41,7 +41,7 @@ const App = () => {
     setTodayInTimestamp(Math.floor(Date.now() / 1000));
     setDevise('^FCHI');
     setDeviseName('CAC 40');
-    //fetchData();
+    fetchData();
   }, [interval, todayInTimestamp]);
 
   const options = {
