@@ -41,7 +41,7 @@ const App = () => {
     setTodayInTimestamp(Math.floor(Date.now() / 1000));
     setDevise('^FCHI');
     setDeviseName('CAC 40');
-    fetchData();
+    //fetchData();
   }, [interval, todayInTimestamp]);
 
   const options = {
