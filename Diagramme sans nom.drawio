@@ -1,9 +1,31 @@
-<mxfile host="app.diagrams.net" modified="2023-12-20T13:57:36.553Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" version="22.1.11" etag="VPPL82uaFw2g29Nv9-Z3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-12-20T14:12:09.541Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="v0DuKUpAtxaEsIwjRlhr" version="22.1.11" type="github">
   <diagram name="Page-1" id="Kw-FQ069hlyt6fVbykpz">
-    <mxGraphModel>
+    <mxGraphModel dx="1194" dy="705" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="ktf-S5T0pv7cnyKSIM4K-1" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://s.w.org/style/images/about/WordPress-logotype-alternative.png;" vertex="1" parent="1">
+          <mxGeometry x="314" y="440" width="200" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="ktf-S5T0pv7cnyKSIM4K-4" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn-icons-png.flaticon.com/512/149/149749.png;" vertex="1" parent="1">
+          <mxGeometry x="690" y="433" width="122" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="ktf-S5T0pv7cnyKSIM4K-5" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="ktf-S5T0pv7cnyKSIM4K-1" target="ktf-S5T0pv7cnyKSIM4K-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="316" y="533" as="sourcePoint" />
+            <mxPoint x="366" y="483" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ktf-S5T0pv7cnyKSIM4K-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=-0.025;exitY=0.697;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ktf-S5T0pv7cnyKSIM4K-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="570" as="sourcePoint" />
+            <mxPoint x="520" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ktf-S5T0pv7cnyKSIM4K-7" value="Site web de FripeChic" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="384" y="548" width="60" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
