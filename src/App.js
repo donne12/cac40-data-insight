@@ -1,34 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Chart } from 'react-google-charts';
-import './App.css';
+/* eslint-disable no-template-curly-in-string */
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Chart } from "react-google-charts";
+import "./App.css";
+import Spinner from 'react-bootstrap/Spinner';
 
 const App = () => {
-  const [interval, setInterval] = useState('1d');
-  const [devise, setDevise] = useState('^FCHI');
-  const [deviseName, setDeviseName] = useState('');
+  const [interval, setInterval] = useState("1d");
+  const [devise, setDevise] = useState("^FCHI");
+  const [deviseName, setDeviseName] = useState("");
   const [chartData, setChartData] = useState([]);
-  const [todayInTimestamp, setTodayInTimestamp] = useState(Math.floor(Date.now() / 1000));
+  const [loading, setLoading] = useState(true);
+  const [todayInTimestamp, setTodayInTimestamp] = useState(
+    Math.floor(Date.now() / 1000)
+  );
 
   const fetchData = async () => {
+    setLoading(true);
+
     try {
       const res = await axios.get(
-        `/v8/finance/chart/${devise}?period1=1633381200&period2=${todayInTimestamp}&interval=${interval}&events=history&crumb=5YTX%2FgVGBmg&corsDomain=finance.yahoo.com&.tsrc=finance`,
+        `https://api.allorigins.win/get?url=${encodeURIComponent(
+          `https://query1.finance.yahoo.com/v8/finance/chart/${devise}?period1=1633381200&period2=${todayInTimestamp}&interval=${interval}&events=history&crumb=5YTX%2FgVGBmg&corsDomain=finance.yahoo.com&.tsrc=finance`
+        )}`,
         {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            "Content-Type": "application/x-www-form-urlencoded",
           },
-        },
+        }
       );
 
-      const chartData = [['Timestamp', 'a', 'b', 'c', 'd']];
-      const timestamps = res.data.chart.result[0]['timestamp'];
-      const values = res.data.chart.result[0]['indicators']['quote'][0];
+      setLoading(false);
+      const chartData = [["Timestamp", "a", "b", "c", "d"]];
+      const timestamps = JSON.parse(res.data.contents).chart.result[0]["timestamp"];
+      const values = JSON.parse(res.data.contents).chart.result[0]["indicators"][
+        "quote"
+      ][0];
 
       timestamps.forEach((element, index) => {
         const date = new Date(element * 1000); // Unix time in ms
         const prettyDate = date.toDateString();
-        chartData.push([prettyDate, values['high'][index], values['open'][index], values['close'][index], values['low'][index]]);
+        chartData.push([
+          prettyDate,
+          values["high"][index],
+          values["open"][index],
+          values["close"][index],
+          values["low"][index],
+        ]);
       });
 
       setChartData(chartData);
@@ -39,19 +57,19 @@ const App = () => {
 
   useEffect(() => {
     setTodayInTimestamp(Math.floor(Date.now() / 1000));
-    setDevise('^FCHI');
-    setDeviseName('CAC 40');
+    setDevise("^FCHI");
+    setDeviseName("CAC 40");
     fetchData();
   }, [interval, todayInTimestamp]);
 
   const options = {
-    legend: 'none',
+    legend: "none",
     candlestick: {
-      fallingColor: { strokeWidth: 0, fill: '#f00' },
-      risingColor: { strokeWidth: 0, fill: '#0f0' },
+      fallingColor: { strokeWidth: 0, fill: "#f00" },
+      risingColor: { strokeWidth: 0, fill: "#0f0" },
       width: 0.5,
     },
-    chartArea: { width: '80%', height: '80%' },
+    chartArea: { width: "80%", height: "80%" },
   };
 
   const handleIntervalChange = (e) => {
@@ -61,32 +79,62 @@ const App = () => {
   const handleDeviseChange = (devise, deviseName) => (e) => {
     setDevise(devise);
     setDeviseName(deviseName);
-    fetchData()
-  }
+    fetchData();
+  };
 
   return (
     <div className="container">
+      <div>
+        {loading ? (
+          <Spinner className="Spinner" animation="border" role="status">
+            <img src="/assets/spinner.gif" alt="loading..." height="50px"/>
+            &nbsp;
+            <span className="visually-hidden">Chargement des données, veuillez patienter...</span>
+          </Spinner>
+        ) : (
+          <div>
+          </div>
+        )}
+      </div>
       <h1>Graphique boursier du 4 Octobre 2021 à aujourd'hui</h1>
-      <h2>{deviseName} ({devise})</h2>
+      <h2>
+        {deviseName} ({devise})
+      </h2>
 
       <div className="row">
         <button onClick={handleDeviseChange("^FCHI", "CAC40")}>CAC40</button>
-        <button onClick={handleDeviseChange("CA.PA", "Carrefour")}>Carrefour</button>
+        <button onClick={handleDeviseChange("CA.PA", "Carrefour")}>
+          Carrefour
+        </button>
         <button onClick={handleDeviseChange("AIR.PA", "Airbus")}>Airbus</button>
         <button onClick={handleDeviseChange("BN.PA", "Danone")}>Danone</button>
-        <button onClick={handleDeviseChange("BNP.PA", "BNP Paribas")}>BNP</button>
-        <button onClick={handleDeviseChange("ACA.PA", "Crédit Agricole")}>Crédit Agricole</button>
+        <button onClick={handleDeviseChange("BNP.PA", "BNP Paribas")}>
+          BNP
+        </button>
+        <button onClick={handleDeviseChange("ACA.PA", "Crédit Agricole")}>
+          Crédit Agricole
+        </button>
         <button onClick={handleDeviseChange("ENGI.PA", "Engie")}>Engie</button>
         <button onClick={handleDeviseChange("KER.PA", "Kering")}>Kering</button>
         <button onClick={handleDeviseChange("MC.PA", "LVMH")}>LVMH</button>
-        <button onClick={handleDeviseChange("OR.PA", "L'Oréal")}>L'Oréal</button>
+        <button onClick={handleDeviseChange("OR.PA", "L'Oréal")}>
+          L'Oréal
+        </button>
         <button onClick={handleDeviseChange("ORA.PA", "Orange")}>Orange</button>
-        <button onClick={handleDeviseChange("RI.PA", "Pernod Ricard")}>Pernod Ricard</button>
+        <button onClick={handleDeviseChange("RI.PA", "Pernod Ricard")}>
+          Pernod Ricard
+        </button>
         <button onClick={handleDeviseChange("SAN.PA", "Sanofi")}>Sanofi</button>
-        <button onClick={handleDeviseChange("SU.PA", "Schneider Electric")}>Schneider Electric</button>
-        <button onClick={handleDeviseChange("GLE.PA", "Société Générale")}>S.G</button>
+        <button onClick={handleDeviseChange("SU.PA", "Schneider Electric")}>
+          Schneider Electric
+        </button>
+        <button onClick={handleDeviseChange("GLE.PA", "Société Générale")}>
+          S.G
+        </button>
         <button onClick={handleDeviseChange("SW.PA", "Sodexo")}>Sodexo</button>
-        <button onClick={handleDeviseChange("FP.PA", "Total Energies")}>Total</button>
+        <button onClick={handleDeviseChange("FP.PA", "Total Energies")}>
+          Total
+        </button>
       </div>
 
       <div>
@@ -96,7 +144,6 @@ const App = () => {
           <option value="1wk">1 semaine</option>
           <option value="1mo">1 mois</option>
         </select>
-
       </div>
       <Chart
         chartType="CandlestickChart"
@@ -108,15 +155,11 @@ const App = () => {
 
       <h1>Dernières infos via flux RSS</h1>
       <div className="row">
-
         <div className="col">
           <h2>Selon `Le Figaro</h2>
-          <div id="rss-feed">
-          </div>
+          <div id="rss-feed"></div>
         </div>
       </div>
-
-
     </div>
   );
 };

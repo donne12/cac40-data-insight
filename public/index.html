@@ -11,6 +11,18 @@
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.0/css/bootstrap.min.css"
+      crossorigin
+    ></script>
     <title>CAC40 Data Insight</title>
     <style>
       button {
@@ -63,35 +75,39 @@
       }
     </style>
 
-<script>
-  // Fonction pour charger et afficher le flux RSS
-  function loadRSS() {
-      const rssFeed = document.getElementById('rss-feed');
-      const rssURL = 'https://www.lefigaro.fr/rss/figaro_bourse.xml'; // Remplacez par l'URL du flux RSS que vous souhaitez intégrer
+    <script>
+      // Fonction pour charger et afficher le flux RSS
+      function loadRSS() {
+        const rssFeed = document.getElementById("rss-feed");
+        const rssURL = "https://www.lefigaro.fr/rss/figaro_bourse.xml"; // Remplacez par l'URL du flux RSS que vous souhaitez intégrer
 
-      // Utilisez un service comme RSS2JSON pour convertir le flux RSS en JSON
-      const rss2jsonURL = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssURL);
+        // Utilisez un service comme RSS2JSON pour convertir le flux RSS en JSON
+        const rss2jsonURL =
+          "https://api.rss2json.com/v1/api.json?rss_url=" +
+          encodeURIComponent(rssURL);
 
-      fetch(rss2jsonURL)
-          .then(response => response.json())
-          .then(data => {
-              // Parcourez les articles du flux RSS et affichez-les
-              data.items.forEach(item => {
-                  const article = document.createElement('div');
-                  article.innerHTML = `
+        fetch(rss2jsonURL)
+          .then((response) => response.json())
+          .then((data) => {
+            // Parcourez les articles du flux RSS et affichez-les
+            data.items.forEach((item) => {
+              const article = document.createElement("div");
+              article.innerHTML = `
                       <h2><a href="${item.link}" target="_blank">${item.title}</a></h2>
                       <p>${item.pubDate}</p>
                       <p>${item.description}</p>
                   `;
-                  rssFeed.appendChild(article);
-              });
+              rssFeed.appendChild(article);
+            });
           })
-          .catch(error => console.error('Erreur de chargement du flux RSS', error));
-  }
+          .catch((error) =>
+            console.error("Erreur de chargement du flux RSS", error)
+          );
+      }
 
-  // Chargez le flux RSS lors du chargement de la page
-  window.addEventListener('load', loadRSS);
-</script>
+      // Chargez le flux RSS lors du chargement de la page
+      window.addEventListener("load", loadRSS);
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
