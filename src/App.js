@@ -60,6 +60,8 @@ const App = () => {
     setDevise("^FCHI");
     setDeviseName("CAC 40");
     fetchData();
+    // fetchData is recreated on every render: adding it here would refetch in a loop.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [interval, todayInTimestamp]);
 
   const options = {
