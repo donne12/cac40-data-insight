@@ -8,7 +8,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.2",
+    "axios": "^1.21.0",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.3.8",
     "http-proxy-middleware": "^2.0.6",
