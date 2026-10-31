@@ -10,11 +10,11 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "boostrap": "^2.0.0",
-    "bootstrap": "^5.3.2",
+    "bootstrap": "^5.3.8",
     "http-proxy-middleware": "^2.0.6",
     "latest": "^0.2.0",
     "react": "^16.13.1",
-    "react-bootstrap": "^2.9.2",
+    "react-bootstrap": "^2.10.10",
     "react-dom": "^16.13.1",
     "react-google-charts": "^3.0.15",
     "react-scripts": "3.4.1"
